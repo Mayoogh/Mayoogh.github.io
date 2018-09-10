@@ -18,14 +18,14 @@ $(document).ready(function(){
     EngineStatus = snap.val().EngineStatus;
     BatteryStatus = snap.val().BatteryStatus;
     if(EngineStatus == 1){
-      // $(".lightStatus").text("The light is on");
+       $(".lightStatus").text("The Engine is on");
     } else {
-      // $(".lightStatus").text("The light is off");
+       $(".lightStatus").text("The Engine is off");
     }
     if(BatteryStatus == 1){
-      // $(".lightStatus").text("The light is on");
+       $(".lightStatus").text("The Battery is on");
     } else {
-      // $(".lightStatus").text("The light is off");
+       $(".lightStatus").text("The Battery is off");
     }
   });
 
