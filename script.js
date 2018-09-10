@@ -16,8 +16,13 @@ $(document).ready(function(){
 
   database.ref().on("value", function(snap){
     EngineStatus = snap.val().EngineStatus;
-    EngineStatus = snap.val().EngineStatus;
+    BatteryStatus = snap.val().BatteryStatus;
     if(EngineStatus == 1){
+      // $(".lightStatus").text("The light is on");
+    } else {
+      // $(".lightStatus").text("The light is off");
+    }
+    if(BatteryStatus == 1){
       // $(".lightStatus").text("The light is on");
     } else {
       // $(".lightStatus").text("The light is off");
@@ -25,7 +30,8 @@ $(document).ready(function(){
   });
 
   $(".lightButton").click(function(){
-    var firebaseRef = firebase.database().ref().child("EngineStatus");
+    var firebaseRef1 = firebase.database().ref().child("EngineStatus");
+    var firebaseRef2 = firebase.database().ref().child("BatteryStatus");
 
     if(EngineStatus == 1){
       firebaseRef.set(0);
@@ -34,7 +40,7 @@ $(document).ready(function(){
       firebaseRef.set(1);
       EngineStatus = 1;
     }
-    
+
     if(BatteryStatus == 1){
       firebaseRef.set(0);
       BatteryStatus = 0;
