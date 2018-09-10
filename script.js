@@ -34,18 +34,18 @@ $(document).ready(function(){
     var firebaseRef2 = firebase.database().ref().child("BatteryStatus");
 
     if(EngineStatus == 1){
-      firebaseRef.set(0);
+      firebaseRef1.set(0);
       EngineStatus = 0;
     } else {
-      firebaseRef.set(1);
+      firebaseRef1.set(1);
       EngineStatus = 1;
     }
 
     if(BatteryStatus == 1){
-      firebaseRef.set(0);
+      firebaseRef2.set(0);
       BatteryStatus = 0;
     } else {
-      firebaseRef.set(1);
+      firebaseRef2.set(1);
       BatteryStatus = 1;
     }
   });
