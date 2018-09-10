@@ -11,42 +11,26 @@
 
 $(document).ready(function(){
   var database = firebase.database();
-  var EngineStatus;
-  var BatteryStatus;
+  var ledStatus;
 
   database.ref().on("value", function(snap){
-    EngineStatus = snap.val().EngineStatus;
-    BatteryStatus = snap.val().BatteryStatus;
-    if(EngineStatus == 1){
-       $(".lightStatus").text("The Engine is on");
+    ledStatus = snap.val().ledStatus;
+    if(ledStatus == 1){
+      $(".lightStatus").text("The light is on");
     } else {
-       $(".lightStatus").text("The Engine is off");
-    }
-    if(BatteryStatus == 1){
-       $(".lightStatus").text("The Battery is on");
-    } else {
-       $(".lightStatus").text("The Battery is off");
+      $(".lightStatus").text("The light is off");
     }
   });
 
   $(".lightButton").click(function(){
-    var firebaseRef1 = firebase.database().ref().child("EngineStatus");
-    var firebaseRef2 = firebase.database().ref().child("BatteryStatus");
+    var firebaseRef = firebase.database().ref().child("ledStatus");
 
-    if(EngineStatus == 1){
-      firebaseRef1.set(0);
-      EngineStatus = 0;
+    if(ledStatus == 1){
+      firebaseRef.set(0);
+      ledStatus = 0;
     } else {
-      firebaseRef1.set(1);
-      EngineStatus = 1;
-    }
-
-    if(BatteryStatus == 1){
-      firebaseRef2.set(0);
-      BatteryStatus = 0;
-    } else {
-      firebaseRef2.set(1);
-      BatteryStatus = 1;
+      firebaseRef.set(1);
+      ledStatus = 1;
     }
   });
 });
