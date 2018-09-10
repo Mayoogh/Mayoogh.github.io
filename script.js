@@ -11,9 +11,11 @@
 
 $(document).ready(function(){
   var database = firebase.database();
-  var ledStatus;
+  var EngineStatus;
+  var BatteryStatus;
 
   database.ref().on("value", function(snap){
+<<<<<<< HEAD
     ledStatus = snap.val().ledStatus;
     if(ledStatus == 1){
 <<<<<<< HEAD
@@ -21,20 +23,40 @@ $(document).ready(function(){
 =======
       // $(".lightStatus").text("The light is on");
 >>>>>>> parent of c7b30e6... Smart_Ride_beta
+=======
+    EngineStatus = snap.val().EngineStatus;
+    BatteryStatus = snap.val().BatteryStatus;
+    if(EngineStatus == 1){
+       $(".lightStatus").text("The Engine is on");
+>>>>>>> parent of 7ae69b7... Default
     } else {
-      $(".lightStatus").text("The light is off");
+       $(".lightStatus").text("The Engine is off");
+    }
+    if(BatteryStatus == 1){
+       $(".lightStatus").text("The Battery is on");
+    } else {
+       $(".lightStatus").text("The Battery is off");
     }
   });
 
   $(".lightButton").click(function(){
-    var firebaseRef = firebase.database().ref().child("ledStatus");
+    var firebaseRef1 = firebase.database().ref().child("EngineStatus");
+    var firebaseRef2 = firebase.database().ref().child("BatteryStatus");
 
-    if(ledStatus == 1){
-      firebaseRef.set(0);
-      ledStatus = 0;
+    if(EngineStatus == 1){
+      firebaseRef1.set(0);
+      EngineStatus = 0;
     } else {
-      firebaseRef.set(1);
-      ledStatus = 1;
+      firebaseRef1.set(1);
+      EngineStatus = 1;
+    }
+
+    if(BatteryStatus == 1){
+      firebaseRef2.set(0);
+      BatteryStatus = 0;
+    } else {
+      firebaseRef2.set(1);
+      BatteryStatus = 1;
     }
   });
 });
